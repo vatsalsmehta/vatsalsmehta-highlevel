@@ -1,0 +1,124 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38vh;
+  margin-top: 140px;
+  background-color: #fbfaff;
+}
+
+.main {
+  width: 40rem;
+  height: 33rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+#header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+
+.heading {
+  padding-left: 200px;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.5rem;
+  color: #141a39;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.leaderboard {
+  width: 100%;
+  position: relative;
+}
+
+.tableContainer {
+  max-height: 30rem; /* Set the maximum height for the table container */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #141a39;
+  cursor: default;
+}
+
+.table-row:hover {
+  background-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0px 5px 15px 8px #e4e7fb;
+}
+
+.odd-row {
+  background-color: #f9f9f9;
+}
+
+.first-row:hover {
+  color: #fff;
+  background-color: #5c5be5;
+}
+
+.first-row {
+  color: #fff;
+  background-color: #5c5be5;
+}
+
+.table-cell {
+  height: 5rem;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.4rem;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.number-cell {
+  width: 0.8rem;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.name-cell {
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.points-cell {
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+.bets-cell {
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 740px) {
+  .wrapper {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .main {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 390px) {
+  .main {
+    font-size: 45%;
+  }
+}

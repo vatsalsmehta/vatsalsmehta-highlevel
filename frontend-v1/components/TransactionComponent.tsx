@@ -7,12 +7,12 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 
-interface BetComponentProps {
+interface TransactionComponentProps {
   handleInitiateTransaction: (txnType: string, description: string, amount: number) => void;
 }
 
-export default function TransactionComponent(props: BetComponentProps) {
-  const handlePlaceBet = props.handleInitiateTransaction;
+export default function TransactionComponent(props: TransactionComponentProps) {
+  const handlePlaceTransaction = props.handleInitiateTransaction;
   const allAvailableTxnType = ['CREDIT', 'DEBIT'];
   const [selectedTxnType, setSelectedTxnType] = useState('');
   const [description, setDescription] = useState('');
@@ -36,7 +36,7 @@ export default function TransactionComponent(props: BetComponentProps) {
       // Check if description is empty (or contains only spaces)
       alert('Description cannot be empty');
     } else {
-      handlePlaceBet(selectedTxnType, description, amount);
+      handlePlaceTransaction(selectedTxnType, description, amount);
     }
   };
 

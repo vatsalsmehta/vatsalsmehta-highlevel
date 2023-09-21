@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Frontend Setup -
 
 ## Getting Started
 
@@ -26,6 +26,8 @@ You'll have the fields for transaction amount, description and whether you want 
 On the same Screen you'll see a Tab named HISTORY -
 On clocking on this tab one will see the screen update to show you the Transaction History -
 <img width="1252" alt="Screenshot 2023-09-22 at 2 04 58 AM" src="https://github.com/vatsalsmehta/vatsalsmehta-highlevel/assets/59135839/eafc19f8-2ccd-4f0f-bf97-fa1c799044c3">
+1. npm install
+2. npm run dev
 
 If a wallet doesn't exist for you, you'll be redirected to a screen where you'll be able to create a wallet for you and also add initial balance amount-
 

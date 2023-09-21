@@ -50,13 +50,16 @@ const WalletComponent = () => {
           headers: headers,
           body: requestBody, // Pass the JSON data as the request body
         });
-    
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+
         const responseData = await response.json();
         console.log('Response data:', responseData);
+        if(response.status==200) {
+          alert("Transaction Completed Successfully");
+        } else {
+          alert(responseData.error);
+        }
       } catch (error) {
+        alert(error);
         console.error('Error:', error);
       }
     }
@@ -64,7 +67,7 @@ const WalletComponent = () => {
 
     const handleInitiateTransaction = async(txnType: string, description: string, amount: number) => {
       await handlePlaceTransaction(txnType, amount, description);
-      // this will lead to updation of bets placed once a person bets submits
+      // this will lead to reload
       await handleFetchWalletDetailsbyemail()
   }
 

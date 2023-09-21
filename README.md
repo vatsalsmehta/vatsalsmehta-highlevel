@@ -34,3 +34,12 @@ Here's an example on how it works -
 
    <img width="736" alt="Screenshot 2023-09-21 at 11 28 17 PM" src="https://github.com/vatsalsmehta/vatsalsmehta-highlevel/assets/59135839/4b56289c-859b-478f-92ad-d9a1122e2b69">
 
+Handling of Concurrent Requests:
+
+Here's how DynamoDB handles concurrent requests:
+
+Conditional Expressions: When you perform a write operation, you can specify a condition using a Conditional Expression. For example, you can specify that you want to update an item only if a certain attribute has a specific value.
+
+Versioning and Timestamps: Some applications use version numbers or timestamps to track changes to items. You can include a condition that checks the version number or timestamp to ensure that you're updating the latest version of the item.
+
+Transactions: DynamoDB supports transactions, which allow you to group multiple operations (read and write) together into a single, atomic unit. This ensures that all operations in the transaction succeed or fail together. Transactions can be helpful in managing concurrent updates. This also prevents dirty reads and are the most suitable for concurrent requests.

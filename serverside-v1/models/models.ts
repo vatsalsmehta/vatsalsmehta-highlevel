@@ -6,6 +6,15 @@ export interface walletInitialisationResponse {
     "date": string
 }
 
+export interface WalletInfoByEmail {
+  createdAt: string;
+  SK: string;
+  walletName: string;
+  walletId: string;
+  PK: string;
+}
+
+
 export interface WalletDetails {
     walletName: string;
     currentBalance: number;

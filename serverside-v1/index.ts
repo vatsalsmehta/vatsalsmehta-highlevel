@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
-// required to read variables from env file
 import dotenv from "dotenv";
+import cors from "cors"; // Import the cors module
+
 dotenv.config();
 
 const app: Application = express();
@@ -10,23 +11,25 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Use the cors middleware to enable CORS
+app.use(cors());
+
 try {
     app.listen(port, (): void => {
         console.log(`Connected successfully on port ${port}`);
     });
 
-    // route for sign in and signup authentication
+    // route for sign-in and signup authentication
     const initialiseRoute = require("./handlers/initialiseHandler");
     app.use('/initialise', initialiseRoute);
 
     const walletRoute = require("./handlers/walletHandler");
-    app.use('/wallet', walletRoute)
+    app.use('/wallet', walletRoute);
 
     const transactionRoute = require("./handlers/transactHandler");
-    app.use('/transact', transactionRoute)
+    app.use('/transact', transactionRoute);
 
-    
     // TODO: route for signup
 } catch (error:any) {
-    console.error(`Error occured: ${error.message}`);
+    console.error(`Error occurred: ${error.message}`);
 }

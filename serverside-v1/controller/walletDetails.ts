@@ -1,5 +1,5 @@
 import { association_type, transaction_type } from "../constants/constantv1"
-import { WalletDetails, walletInitialisationResponse } from "../models/models"
+import { WalletDetails, WalletInfoByEmail, walletInitialisationResponse } from "../models/models"
 import { tableName, docClient } from "../utils/awsConfigs"
 import { generateWalletId } from "../utils/codeUtils"
 import { getItemFromDb, putItemToDb } from "../utils/dbUtils"
@@ -39,7 +39,7 @@ export const getWalletDetails = async(walletId:string) => {
 
 export const getWalletIdFromEmail = async (email:string) => {
    const userWalletMapping = await getItemFromDb(email, association_type.WALLET)
-   return userWalletMapping
+   return userWalletMapping as WalletInfoByEmail
     
 }
 

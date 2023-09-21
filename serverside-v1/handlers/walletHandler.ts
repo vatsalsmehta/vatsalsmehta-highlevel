@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import { BadRequestError, errorResponse } from "../utils/error";
-import { getWalletDetails } from "../controller/walletDetails";
+import { getWalletDetails, getWalletIdFromEmail } from "../controller/walletDetails";
 import { getHistoryDetailsForWalletId } from "../controller/walletHistory";
 const app: Application = express();
 
@@ -22,6 +22,24 @@ app.get("/transactions", async (req: Request, res: Response) => {
       return errorResponse(error as Error, res);
     }
   });
+
+  app.get("/email/:emailId", async(req:Request, res:Response) => {
+    try {
+        const emailId = req.params.emailId
+        if (!emailId) {
+            throw new BadRequestError('emailId is missing');
+        }
+
+        const userWalletMapping = await getWalletIdFromEmail(emailId);
+        const walletDetails = await getWalletDetails(userWalletMapping.walletId);
+
+        res.status(200).json(walletDetails)
+
+    } catch (error) {
+        return errorResponse(error as Error, res);
+    }
+
+})
   
 
 

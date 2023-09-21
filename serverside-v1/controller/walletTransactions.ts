@@ -41,7 +41,7 @@ export const creditAmountToWallet = async (walletId:string, currentAmount: numbe
         "SK": association_type.TRANSACTION,
         "walletName": walletName,
         "lastTransactionId" : generateTransactionId(),
-        "currentBalance": currentAmount + creditAmount,
+        "currentBalance": Number(currentAmount + creditAmount),
         "updatedAt" : new Date().toISOString()
     }
 

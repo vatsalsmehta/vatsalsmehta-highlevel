@@ -31,6 +31,9 @@ app.get("/transactions", async (req: Request, res: Response) => {
         }
 
         const userWalletMapping = await getWalletIdFromEmail(emailId);
+        if(!userWalletMapping) {
+          throw new BadRequestError(`No WalletId exists for email: ${emailId}`);
+        }
         const walletDetails = await getWalletDetails(userWalletMapping.walletId);
 
         res.status(200).json(walletDetails)

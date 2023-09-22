@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withRouter } from 'next/router'; // Import withRouter
 import { Box, Button, TextField } from '@mui/material';
-import { WalletDetails } from '../models/transactionModels';
+import { WalletDetails, prodUrl } from '../models/transactionModels';
 
 const containerStyle = {
   display: 'flex',
@@ -27,7 +27,7 @@ class IndexPage extends React.Component {
 
     try {
       this.setState({ isFetching: true });
-      const response = await fetch(`http://localhost:4000/wallet/email/${email.value}`);
+      const response = await fetch(`${prodUrl}/wallet/email/${email.value}`);
       if (response.status !== 200) {
         throw new Error('Server Error: Failed to Fetch WalletDetails');
       }

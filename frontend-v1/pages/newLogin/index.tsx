@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router'; 
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { prodUrl } from '../../models/transactionModels';
 
 const NewLogin = () => {
   const router = useRouter(); // Initialize the router
@@ -29,7 +30,7 @@ const NewLogin = () => {
     }
 
     // Make an API call
-    const apiUrl = 'http://localhost:4000/initialise/wallet';
+    const apiUrl = `${prodUrl}/initialise/wallet`;
     const requestBody = {
       name: name,
       balance: balance,

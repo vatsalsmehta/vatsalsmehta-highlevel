@@ -16,6 +16,10 @@ export interface TransactionHistory {
     description: string;
     transactionId: string;
   }
+
+  // TODO - add it into aws secrets manager instead of here
+  // this is not a good practice but doing it because of time constraints
+  export const prodUrl = 'http://65.1.3.218:4000'
   
   
   

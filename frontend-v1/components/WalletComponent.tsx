@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import TransactionComponent from './TransactionComponent';
-import { WalletDetails } from '../models/transactionModels';
+import { WalletDetails, prodUrl } from '../models/transactionModels';
 
 const WalletComponent = () => {
     const [walletDetails, setWalletDetails] = useState<WalletDetails>();
@@ -15,7 +15,7 @@ const WalletComponent = () => {
       try {
         setIsFetching(true)
         const email = localStorage.getItem('email_id');
-        const response = await fetch(`http://localhost:4000/wallet/email/${email}`);
+        const response = await fetch(`${prodUrl}/wallet/email/${email}`);
         if (!response.ok) {
           throw new Error('Server Error: Failed to Fetch WalletDetails');
         }
@@ -32,7 +32,7 @@ const WalletComponent = () => {
     }
 
     async function handlePlaceTransaction(transaction_type: string, amount: number, description: string) {
-      const url = `http://localhost:4000/transact/${walletDetails?.PK}`;
+      const url = `${prodUrl}/transact/${walletDetails?.PK}`;
     
       const headers = {
         'Content-Type': 'application/json',

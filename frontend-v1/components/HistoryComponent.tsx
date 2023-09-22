@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './historyComponent.module.css';
-import { TransactionHistory } from '../models/transactionModels';
+import { TransactionHistory, prodUrl } from '../models/transactionModels';
 
 async function getTransactionHistoryByWalletId(walletId: string) {
-  const url = `http://localhost:4000/wallet/transactions?walletId=${walletId}&limit=25`;
+  const url = `${prodUrl}/wallet/transactions?walletId=${walletId}&limit=25`;
 
   const headers = {
     'Content-Type': 'application/json',

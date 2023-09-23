@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './historyComponent.module.css';
 import { TransactionHistory, prodUrl } from '../models/transactionModels';
 import Button from '@mui/material/Button';
-import { FormControl, InputLabel, Select } from '@mui/material';
+import { FormControl, InputLabel, Select, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 async function getTransactionHistoryByWalletId(walletId: string) {
   const url = `${prodUrl}/wallet/transactions?walletId=${walletId}&limit=25`;
@@ -59,9 +60,24 @@ function convertToCSV(data: TransactionHistory[]): string {
 const HistoryComponent = () => {
   const walletId = localStorage.getItem('walletId') || "";
   console.log("display service data is :", walletId);
+  const theme = useTheme();
 
   const [sortBy, setSortBy] = useState(''); // Initially, no sorting is applied
   const [transactionHistory, setTransactionHistory] = useState<TransactionHistory[]>([]); // State to store transaction history
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const itemsToDisplay = transactionHistory.slice(startIndex, endIndex);
+
+
+
+  function handlePageChange(newPage: number) {
+    setCurrentPage(newPage);
+  }
+  
 
   function handleDownloadCSV() {
     const csvData = convertToCSV(transactionHistory);
@@ -77,18 +93,6 @@ const HistoryComponent = () => {
     document.body.removeChild(a);
   }
 
-  // function handleSortChange(event: React.ChangeEvent<HTMLSelectElement>) {
-  //   const selectedOption = event.target.value;
-  //   setSortBy(selectedOption);
-  
-  //   if (selectedOption === 'amount') {
-  //     // Sort by transactionAmount in ascending order
-  //     setTransactionHistory([...transactionHistory].sort((a, b) => a.transactionAmount - b.transactionAmount));
-  //   } else if (selectedOption === 'date') {
-  //     // Sort by createdAt in ascending order
-  //     setTransactionHistory([...transactionHistory].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
-  //   }
-  // }
 
   function handleSortChange(event: any) {
     const selectedOption = event.target.value;
@@ -169,12 +173,12 @@ const HistoryComponent = () => {
                   </tr>
 
               {
-                transactionHistory.map((rowItem, index) => (
+                itemsToDisplay.map((rowItem, index) => (
                   <tr
-                    key={index} // Make sure to add a unique key prop when mapping
+                    key={index}
                     className={`${styles['table-row']} ${styles['odd-row']}`}
                   >
-                    <td className={`${styles['table-cell']} ${styles['name-cell']}`}>{index+1}</td>
+                    <td className={`${styles['table-cell']} ${styles['name-cell']}`}>{index + 1}</td>
                     <td className={`${styles['table-cell']} ${styles['name-cell']}`}>{rowItem.transactionType}</td>
                     <td className={`${styles['table-cell']} ${styles['name-cell']}`}>{rowItem.transactionAmount}</td>
                     <td className={`${styles['table-cell']} ${styles['name-cell']}`}>{rowItem.description}</td>
@@ -182,8 +186,33 @@ const HistoryComponent = () => {
                   </tr>
                 ))
               }
+
             </tbody>
           </table>
+          <div style={{ marginBottom: '20px', marginTop: '20px', textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              style={{ backgroundColor: theme.palette.primary.main, color: 'white' }}
+            >
+              Previous
+            </Button>
+            <Typography variant="body1" style={{ margin: '0 10px', display: 'inline-block', color: 'white' }}>
+              Page {currentPage} of {Math.ceil(transactionHistory.length / itemsPerPage)}
+            </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={endIndex >= transactionHistory.length}
+              style={{ backgroundColor: theme.palette.primary.main, color: 'white' }}
+            >
+              Next
+            </Button>
+          </div>
+
           </div>
         </div>
       </main>

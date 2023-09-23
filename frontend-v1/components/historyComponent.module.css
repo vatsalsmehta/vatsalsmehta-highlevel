@@ -4,11 +4,10 @@
   justify-content: center;
   height: 38vh;
   margin-top: 140px;
-  background-color: #fbfaff;
 }
 
 .main {
-  width: 40rem;
+  width: 50rem;
   height: 33rem;
   background-color: #ffffff;
   display: flex;
@@ -88,7 +87,7 @@
 }
 
 .name-cell {
-  text-align: left;
+  text-align: center;
   font-size: 1.2rem;
 }
 

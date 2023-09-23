@@ -189,6 +189,7 @@ const HistoryComponent = () => {
 
             </tbody>
           </table>
+          </div>
           <div style={{ marginBottom: '20px', marginTop: '20px', textAlign: 'center' }}>
             <Button
               variant="contained"
@@ -213,7 +214,6 @@ const HistoryComponent = () => {
             </Button>
           </div>
 
-          </div>
         </div>
       </main>
     </div>

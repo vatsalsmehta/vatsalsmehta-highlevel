@@ -77,13 +77,16 @@ export default function TransactionComponent(props: TransactionComponentProps) {
         onChange={handleAmountChange}
         style={{ marginTop: '20px' }}
       />
-      <Button
-        style={{ marginTop: '20px', marginLeft: '35px', marginBottom: '30px' }}
-        variant="contained"
-        onClick={handleInitiateTransaction}
-      >
-        Initiate Transaction
-      </Button>
+      <div style={{ textAlign: 'center'}}>
+        <Button
+          style={{ marginTop: '20px', marginBottom: '30px' }}
+          variant="contained"
+          onClick={handleInitiateTransaction}
+        >
+          Initiate Transaction
+        </Button>
+      </div>
+      
     </Box>
   );
 }

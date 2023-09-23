@@ -86,9 +86,8 @@ const WalletComponent = () => {
           <p>Updated At: {walletDetails.updatedAt}</p>
         </div>
       )}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '180px', backgroundColor:'white', paddingTop:'30px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor:'white', paddingTop:'30px' }}>
         <TransactionComponent handleInitiateTransaction={handleInitiateTransaction}/>
-
       </div>
     </div>
     )
